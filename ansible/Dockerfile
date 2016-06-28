@@ -1,13 +1,13 @@
 FROM alpine
 
-ENV ANSIBLE_VERSION 2.0.2.0
+ENV ANSIBLE_VERSION 2.1.0.0
 ENV ANSIBLE_CONFIG /ansible.cfg
 
-RUN apk add --update python py-pip py-crypto openssh-client sshpass gcc python-dev musl-dev libffi-dev openssl-dev && \
+RUN apk add --update python py-pip openssh-client sshpass gcc python-dev musl-dev libffi-dev openssl-dev && \
     rm -rf /var/cache/apk/*
 
 RUN pip install --upgrade pip && \
-    pip install ansible==${ANSIBLE_VERSION}
+    pip install ansible==${ANSIBLE_VERSION} boto crypto
 
 ADD ansible.cfg /ansible.cfg
 
