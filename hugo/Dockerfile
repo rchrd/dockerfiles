@@ -1,15 +1,11 @@
 FROM alpine
 
-ENV VERSION 0.15
+ENV VERSION 0.16
 
-RUN apk add --update openssl py-pygments py-setuptools && \
-    rm -rf /var/cache/apk/*
+RUN apk add --no-cache openssl py-pygments py-setuptools
 
-RUN wget https://github.com/spf13/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux_amd64.tar.gz && \
-    tar -xzf hugo_${VERSION}_linux_amd64.tar.gz && \
-    cd hugo_${VERSION}_linux_amd64 && \
-    mv hugo_${VERSION}_linux_amd64 /hugo && \
-    cd / && \
-    rm -rf hugo_${VERSION}*
+RUN wget https://github.com/spf13/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tgz \
+    && tar -xzf hugo_${VERSION}_linux-64bit.tgz -C / \
+    && rm -rf hugo_*
 
 ENTRYPOINT ["/hugo"]
