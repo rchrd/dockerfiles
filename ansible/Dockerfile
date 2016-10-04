@@ -1,18 +1,54 @@
-FROM alpine
+# https://www.ansible.com/
+#
+# docker run \
+#   --rm \
+# 	-it \
+#   -v ${HOME}:${HOME} \
+# 	-v ${HOME}/.ssh:/root/.ssh:ro \
+#   -w ${PWD} \
+# 	rchrd/ansible \
+#   ansible --version
+#
+FROM alpine:latest
 
-ENV ANSIBLE_VERSION 2.1.0.0
-ENV ANSIBLE_CONFIG /ansible.cfg
+RUN builddeps=' \
+			python-dev \
+			musl-dev \
+			openssl-dev \
+			libffi-dev \
+			gcc \
+			' \
+		&& apk --no-cache add \
+			git \
+			ca-certificates \
+			py-pip \
+			python \
+			py-httplib2 \
+			${builddeps} \
+		&& pip install --upgrade pip \
+		&& pip install --upgrade \
+			ansible \
+			six \
+			boto \
+		&& apk del --purge ${builddeps}
 
-RUN apk add --update python py-pip openssh-client sshpass gcc python-dev musl-dev libffi-dev openssl-dev && \
-    rm -rf /var/cache/apk/*
+RUN mkdir -p /etc/ansible/inventories \
+		&& apk --no-cache add curl
 
-RUN pip install --upgrade pip && \
-    pip install ansible==${ANSIBLE_VERSION} boto crypto
+RUN curl \
+			 --location \
+			 --silent \
+			 https://github.com/adammck/terraform-inventory/releases/download/v0.7-pre/terraform-inventory_v0.7-pre_linux_amd64.zip \
+			 -o terraform-inventory.zip \
+		&& unzip terraform-inventory.zip \
+		&& rm -f terraform-inventory.zip \
+		&& mv terraform-inventory /etc/ansible/inventories/
 
-ADD ansible.cfg /ansible.cfg
+RUN curl \
+			--location \
+			--silent \
+			https://raw.githubusercontent.com/CiscoCloud/terraform.py/master/terraform.py \
+			-o /etc/ansible/inventories/terraform.py \
+		&& chmod +x /etc/ansible/inventories/terraform.py
 
-ADD run.sh /run.sh
-
-RUN chmod 755 /run.sh
-
-ENTRYPOINT ["/run.sh"]
+COPY ansible.cfg /etc/ansible/ansible.cfg
