@@ -33,7 +33,7 @@ RUN builddeps=' \
 		&& apk del --purge ${builddeps}
 
 RUN mkdir -p /etc/ansible/inventories \
-		&& apk --no-cache add curl
+		&& apk --no-cache add curl jq
 
 RUN curl \
 			 --location \
