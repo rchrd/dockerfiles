@@ -44,10 +44,11 @@ RUN curl \
 		&& rm -f terraform-inventory.zip \
 		&& mv terraform-inventory /etc/ansible/inventories/
 
+			# https://raw.githubusercontent.com/CiscoCloud/terraform.py/master/terraform.py \
 RUN curl \
 			--location \
 			--silent \
-			https://raw.githubusercontent.com/CiscoCloud/terraform.py/master/terraform.py \
+			https://raw.githubusercontent.com/superseb/terraform.py/azurerm/terraform.py \
 			-o /etc/ansible/inventories/terraform.py \
 		&& chmod +x /etc/ansible/inventories/terraform.py
 
