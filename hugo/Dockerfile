@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV VERSION 0.16
+ENV VERSION 0.18.1
 
 RUN apk add --no-cache openssl py-pygments py-setuptools
 
