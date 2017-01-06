@@ -4,7 +4,7 @@ ENV VERSION 0.18.1
 
 RUN apk add --no-cache openssl py-pygments py-setuptools
 
-RUN wget https://github.com/spf13/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tgz \
+RUN wget https://github.com/spf13/hugo/releases/download/v${VERSION}/hugo_${VERSION_Linux-64bit.tar.gz \
     && tar -xzf hugo_${VERSION}_linux-64bit.tgz -C / \
     && rm -rf hugo_*
 
