@@ -2,7 +2,7 @@ FROM java:8-jre-alpine
 
 RUN apk add --no-cache curl openssl jq
 
-ENV version 5.0.1
+ENV version 6.1.0
 ENV root /lib
 ENV home ${root}/xl-release-server
 
