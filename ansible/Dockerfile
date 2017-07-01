@@ -1,14 +1,3 @@
-# https://www.ansible.com/
-#
-# docker run \
-#   --rm \
-# 	-it \
-#   -v ${HOME}:${HOME} \
-# 	-v ${HOME}/.ssh:/root/.ssh:ro \
-#   -w ${PWD} \
-# 	rchrd/ansible \
-#   ansible --version
-#
 FROM alpine:latest
 
 RUN builddeps=' \
@@ -17,39 +6,29 @@ RUN builddeps=' \
 			openssl-dev \
 			libffi-dev \
 			gcc \
+			linux-headers \
+			make \
 			' \
 		&& apk --no-cache add \
-			git \
+			${builddeps} \
 			ca-certificates \
+			curl \
+			git \
+			jq \
+			libssl1.0 \
+			openssh \
+			py-httplib2 \
 			py-pip \
 			python \
-			py-httplib2 \
-			${builddeps} \
 		&& pip install --upgrade pip \
 		&& pip install --upgrade \
 			ansible \
-			six \
+			cryptography \
 			boto \
+			os-client-config \
+			shade \
+			six \
 		&& apk del --purge ${builddeps}
 
-RUN mkdir -p /etc/ansible/inventories \
-		&& apk --no-cache add curl jq
-
-RUN curl \
-			 --location \
-			 --silent \
-			 https://github.com/adammck/terraform-inventory/releases/download/v0.7-pre/terraform-inventory_v0.7-pre_linux_amd64.zip \
-			 -o terraform-inventory.zip \
-		&& unzip terraform-inventory.zip \
-		&& rm -f terraform-inventory.zip \
-		&& mv terraform-inventory /etc/ansible/inventories/
-
-			# https://raw.githubusercontent.com/CiscoCloud/terraform.py/master/terraform.py \
-RUN curl \
-			--location \
-			--silent \
-			https://raw.githubusercontent.com/superseb/terraform.py/azurerm/terraform.py \
-			-o /etc/ansible/inventories/terraform.py \
-		&& chmod +x /etc/ansible/inventories/terraform.py
-
 COPY ansible.cfg /etc/ansible/ansible.cfg
+COPY ssh_config /root/.ssh/config
