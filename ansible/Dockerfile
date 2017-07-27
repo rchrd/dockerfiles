@@ -28,6 +28,9 @@ RUN builddeps=' \
 			os-client-config \
 			shade \
 			six \
+			packaging \
+			msrestazure \
+			azure==2.0.0rc5 \
 		&& apk del --purge ${builddeps}
 
 COPY ansible.cfg /etc/ansible/ansible.cfg
