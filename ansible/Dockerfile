@@ -20,6 +20,7 @@ RUN builddeps=' \
 			py-httplib2 \
 			py-pip \
 			python \
+			sshpass \
 		&& pip install --upgrade pip \
 		&& pip install --upgrade \
 			ansible \
