@@ -15,7 +15,7 @@ RUN apk add --no-cache \
       libxml2-dev \
       py3-lxml \
       gcc && \
-    pip3 install homeassistant==0.49.1 && \
+    pip3 install homeassistant==0.50.1 && \
     mkdir -p /config
 
 VOLUME /config
