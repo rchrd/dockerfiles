@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN builddeps=' \
+RUN apk add --no-cache --virtual builddeps \
 			python-dev \
 			musl-dev \
 			openssl-dev \
@@ -8,9 +8,7 @@ RUN builddeps=' \
 			gcc \
 			linux-headers \
 			make \
-			' \
-		&& apk --no-cache add \
-			${builddeps} \
+		&& apk add --no-cache \
 			ca-certificates \
 			curl \
 			git \
@@ -22,17 +20,8 @@ RUN builddeps=' \
 			python \
 			sshpass \
 		&& pip install --upgrade pip \
-		&& pip install --upgrade \
-			ansible \
-			cryptography \
-			boto \
-			os-client-config \
-			shade \
-			six \
-			packaging \
-			msrestazure \
-			azure==2.0.0rc5 \
-		&& apk del --purge ${builddeps}
+		&& pip install --upgrade ansible[azure] ansible-cmdb \
+		&& apk del builddeps
 
 COPY ansible.cfg /etc/ansible/ansible.cfg
 COPY ssh_config /root/.ssh/config
