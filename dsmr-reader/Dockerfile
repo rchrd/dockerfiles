@@ -17,7 +17,7 @@ RUN apk add --no-cache \
       postgresql-client \
       supervisor
 
-RUN curl --location https://github.com/dennissiemensma/dsmr-reader/archive/${VERSION}.tar.gz -o /tmp/dsmr.tar.gz && \
+RUN curl --location https://github.com/dennissiemensma/dsmr-reader/archive/${DSMR_READER_VERSION}.tar.gz -o /tmp/dsmr.tar.gz && \
     tar -xzf /tmp/dsmr.tar.gz -C / && \
     mv /dsmr-reader* /dsmr && \
     rm -f /tmp/dsmr.tar.gz && \
