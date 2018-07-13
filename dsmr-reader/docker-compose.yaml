@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  dsmrdb:
+    image: postgres
+    container_name: dsmrdb
+    volumes:
+      - dsmrdb:/var/lib/postgresql/data
+      - dsmrdb_backups:/dsmr/backups
+    restart: always
+
+  dsmr:
+    image: rchrd/dsmr-reader:v1.21.0
+    container_name: dsmr
+    restart: always
+    environment:
+      - DSMR_USER=admin
+      - DSMR_EMAIL=root@localhost
+      - DSMR_PASSWORD=admin
+    ports:
+      - 8888:80
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
+
+volumes:
+   dsmrdb:
+   dsmrdb_backups:
