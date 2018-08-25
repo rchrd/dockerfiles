@@ -1,6 +1,6 @@
 FROM python:3.7-alpine3.7
 
-ENV DSMR_READER_VERSION v1.21.0
+ENV DSMR_READER_VERSION v1.23.0
 
 ENV DSMR_USER     admin
 ENV DSMR_EMAIL    root@localhost
@@ -24,6 +24,7 @@ RUN curl --location https://github.com/dennissiemensma/dsmr-reader/archive/${DSM
     cp /dsmr/dsmrreader/provisioning/django/postgresql.py /dsmr/dsmrreader/settings.py
 
 RUN apk add --virtual .build-deps gcc musl-dev postgresql-dev && \
+    pip3 install --upgrade pip && \
     pip3 install six --no-cache && \
     pip3 install -r /dsmr/dsmrreader/provisioning/requirements/base.txt --no-cache-dir && \
     pip3 install -r /dsmr/dsmrreader/provisioning/requirements/postgresql.txt --no-cache-dir && \

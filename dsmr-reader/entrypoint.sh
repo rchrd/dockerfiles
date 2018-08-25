@@ -12,6 +12,9 @@ if [ -z "${DB_HOST}" ] || [ -z "$DB_USER" ] || [ -z "${DB_PASS}" ] || [ -z "${DB
   exit 1
 fi
 
+# Clean old PID files (from unclean shutdown)
+rm -f /var/tmp/*.pid
+
 # Check if we're able to connect to the database instance
 # already. The port isn't required for postgresql.py but
 # it is added for the sake of completion.
