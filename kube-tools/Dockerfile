@@ -1,10 +1,10 @@
 FROM alpine:3.10
 
 ENV KUBEVAL_VERSION=0.14.0 \
-    KUBECTL_VERSION=1.15.3 \
-    KUSTOMIZE_VERSION=3.1.0
+    KUBECTL_VERSION=1.15.4 \
+    KUSTOMIZE_VERSION=3.2.0
 
-RUN apk add --no-cache curl
+RUN apk add --no-cache curl make
 
 RUN curl -L https://github.com/instrumenta/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz -o /tmp/kubeval-linux-amd64.tar.gz \
     && tar xf /tmp/kubeval-linux-amd64.tar.gz -C /tmp \
