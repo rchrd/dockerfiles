@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM python:3.7-alpine
 
 RUN apk add --no-cache --virtual builddeps \
-			python-dev \
+			python3-dev \
 			musl-dev \
 			openssl-dev \
 			libffi-dev \
@@ -13,11 +13,7 @@ RUN apk add --no-cache --virtual builddeps \
 			curl \
 			git \
 			jq \
-			libssl1.0 \
 			openssh \
-			py-httplib2 \
-			py-pip \
-			python \
 			sshpass \
 		&& pip install --upgrade pip \
 		&& pip install --upgrade ansible[azure] ansible-cmdb \
