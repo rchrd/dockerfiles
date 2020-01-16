@@ -15,6 +15,7 @@ RUN apk add --no-cache --virtual builddeps \
 			jq \
 			openssh \
 			sshpass \
+			tzdata \
 		&& pip install --upgrade pip \
 		&& pip install --upgrade ansible[azure] ansible-cmdb \
 		&& apk del builddeps
