@@ -2,4 +2,5 @@ FROM alpine:3.11
 
 RUN apk add --no-cache \
       tzdata \
-      rsync
+      rsync \
+      nfs-utils
