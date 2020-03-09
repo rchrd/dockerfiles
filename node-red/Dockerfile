@@ -1,8 +1,11 @@
-FROM nodered/node-red:1.0.3-2
+FROM nodered/node-red:1.0.4-12-minimal
 
-RUN npm install -no-cache \
+RUN npm install -no-cache --no-fund \
   node-red-contrib-home-assistant-websocket \
   node-red-contrib-repeat \
   node-red-contrib-schedex \
   node-red-contrib-stoptimer2 \
+  node-red-contrib-themes/midnight-red \
   node-red-contrib-time-range-switch
+
+COPY settings.js /usr/src/node-red/node_modules/node-red/settings.js
