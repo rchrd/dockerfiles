@@ -22,3 +22,5 @@ RUN apk add --no-cache --virtual builddeps \
 
 COPY ansible.cfg /etc/ansible/ansible.cfg
 COPY ssh_config /root/.ssh/config
+
+RUN chmod 0600 /root/.ssh/config
