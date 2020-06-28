@@ -2,6 +2,7 @@ FROM nodered/node-red:1.0.6-12-minimal
 
 RUN npm install -no-cache --no-fund \
   node-red-contrib-home-assistant-websocket@0.22.6 \
+  node-red-contrib-presence-faker \
   node-red-contrib-repeat \
   node-red-contrib-schedex \
   node-red-contrib-stoptimer2 \
