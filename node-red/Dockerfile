@@ -1,7 +1,7 @@
 FROM nodered/node-red:1.1.3-12-minimal
 
 RUN npm install -no-cache --no-fund \
-  node-red-contrib-home-assistant-websocket@0.27.4 \
+  node-red-contrib-home-assistant-websocket@0.27.5 \
   node-red-contrib-presence-faker \
   node-red-contrib-repeat \
   node-red-contrib-schedex \
