@@ -20,3 +20,5 @@ RUN wget https://downloads.rclone.org/v${VERSION_RCLONE}/rclone-v${VERSION_RCLON
     && cp /tmp/rclone-v${VERSION_RCLONE}-linux-amd64/rclone /usr/local/bin/rclone \
     && chmod 755 /usr/local/bin/rclone \
     && rm -rf /tmp/rclone*
+
+ADD backup.sh /backup.sh
