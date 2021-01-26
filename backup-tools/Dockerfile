@@ -1,7 +1,7 @@
 FROM debian:stable-slim
 
 ENV VERSION_BORG=1.1.15
-ENV VERSION_RCLONE=1.53.3
+ENV VERSION_RCLONE=1.53.4
 
 RUN apt-get -y update \
     && apt-get -y install --no-install-recommends busybox-static ca-certificates \
