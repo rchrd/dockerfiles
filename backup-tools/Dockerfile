@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-ENV VERSION_BORG=1.1.15
+ENV VERSION_BORG=1.1.16
 ENV VERSION_RCLONE=1.54.1
 
 RUN apt-get -y update \
