@@ -1,6 +1,7 @@
-https://hub.docker.com/r/nodered/node-red/tags?page=1&ordering=last_updated
+# https://hub.docker.com/r/nodered/node-red/tags?page=1&ordering=last_updated
 FROM nodered/node-red:2.1.3-12-minimal
 
+# https://flows.nodered.org/node/node-red-contrib-home-assistant-websocket
 RUN npm install -no-cache --no-fund \
   node-red-contrib-home-assistant-websocket@0.37.0 \
   node-red-contrib-presence-faker \
