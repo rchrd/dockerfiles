@@ -267,9 +267,7 @@ module.exports = {
 
     // Customising the editor
     editorTheme: {
-        page: {
-            css: "/usr/src/node-red/node_modules/@node-red-contrib-themes/midnight-red/theme.css"
-        },
+        theme: "midnight-red",
         projects: {
             // To enable the Projects feature, set this value to true
             enabled: false

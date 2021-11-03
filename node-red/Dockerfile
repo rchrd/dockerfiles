@@ -1,7 +1,8 @@
-FROM nodered/node-red:1.1.3-12-minimal
+https://hub.docker.com/r/nodered/node-red/tags?page=1&ordering=last_updated
+FROM nodered/node-red:2.1.3-12-minimal
 
 RUN npm install -no-cache --no-fund \
-  node-red-contrib-home-assistant-websocket@0.33.1 \
+  node-red-contrib-home-assistant-websocket@0.37.0 \
   node-red-contrib-presence-faker \
   node-red-contrib-repeat \
   node-red-contrib-schedex \
