@@ -12,9 +12,11 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          if [ -f ./${IMAGE_NAME}/version ]
+          ls -l
+          ls -l ./${{ env.IMAGE_NAME }}
+          if [ -f ./${{ env.IMAGE_NAME }}/version ]
           then
-            VERSION=$(cat ./${IMAGE_NAME}/version)
+            VERSION=$(cat ./${{ env.IMAGE_NAME }}/version)
           else
             VERSION=latest
           fi
