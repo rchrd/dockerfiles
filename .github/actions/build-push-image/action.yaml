@@ -23,7 +23,7 @@ runs:
         fi
 
         docker image build --tag "${IMAGE_ID}:${VERSION}" ./${{ inputs.imageName }}
-        echo "docker image push "${IMAGE_ID}:${VERSION}""
+        docker image push "${IMAGE_ID}:${VERSION}"
 
-        echo "docker image tag "${IMAGE_ID}:${VERSION}" "${IMAGE_ID}:latest""
-        echo "docker image push "${IMAGE_ID}:latest""
+        docker image tag "${IMAGE_ID}:${VERSION}" "${IMAGE_ID}:latest"
+        docker image push "${IMAGE_ID}:latest"
