@@ -13,6 +13,6 @@ runs:
     - name: Log into GitHub Container Registry
       run: |
         env | sort
-        echo "Login as ${{ github.actor }} with passwrod '${INPUT_GITHUBTOKEN}'"
+        echo "Login as ${{ github.actor }} with passwrod '${{ inputs.githubToken }}'"
       # run: echo "${INPUT_GITHUBTOKEN}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
       shell: bash
