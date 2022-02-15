@@ -18,7 +18,13 @@ jobs:
           else
             VERSION=latest
           fi
+          echo "${VERSION}"
           echo "::set-output name=version::${VERSION}"
+
+      - run: |
+          echo "IMAGE_NAME=${IMAGE_NAME}"
+          echo "version: ${{steps.get_version.outputs.version}}"
+          echo "output: ${{steps.get_version.outputs.*}}"
 
       - name: Docker meta
         id: test_id
@@ -30,4 +36,4 @@ jobs:
             type=raw,value=latest
             type=raw,value=${{steps.get_version.outputs.version}}
           labels: |
-            org.opencontainers.image.title={{IMAGE_NAME}}
+            org.opencontainers.image.title=${IMAGE_NAME}
