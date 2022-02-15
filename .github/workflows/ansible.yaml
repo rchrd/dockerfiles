@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "ansible/**"
+    branches:
+      - 'main'
 
 jobs:
   build-and-push:

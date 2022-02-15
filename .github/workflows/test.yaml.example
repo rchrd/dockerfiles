@@ -1,0 +1,16 @@
+name: test
+
+on: ["push"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker meta
+        id: test_id
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            ghcr.io/rchrd/test
+          tags: |
+            type=raw,value=latest

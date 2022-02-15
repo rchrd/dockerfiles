@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "kube-tools/**"
+    branches:
+      - 'main'
 
 jobs:
   build-and-push:
