@@ -22,5 +22,5 @@ runs:
           VERSION=latest
         fi
 
-        echo "docker image build --tag "${IMAGE_ID}:${VERSION}" ./${INPUT_IMAGENAME}"
+        docker image build --tag "${IMAGE_ID}:${VERSION}" ./${INPUT_IMAGENAME}
         echo "docker image push "${IMAGE_ID}:${VERSION}""
