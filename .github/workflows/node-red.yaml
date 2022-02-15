@@ -1,9 +1,9 @@
-name: Build and publish kube-tools
+name: Build and publish node-red
 
 on:
   push:
     paths:
-      - "kube-tools/**"
+      - "node-red/**"
 
 jobs:
   build-and-push:
@@ -19,4 +19,4 @@ jobs:
 
       - uses: ./.github/actions/build-push-image
         with:
-          imageName: kube-tools
+          imageName: node-red
