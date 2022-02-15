@@ -2,10 +2,24 @@ name: test
 
 on: ["push"]
 
+env:
+  IMAGE_NAME: node-red
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get version
+        id: get_version
+        run: |
+          if [ -f ./${{ inputs.imageName }}/version ]
+          then
+            VERSION=$(cat ./${{ inputs.imageName }}/version)
+          else
+            VERSION=latest
+          fi
+          echo "::set-output name=version::${VERSION}"
+
       - name: Docker meta
         id: test_id
         uses: docker/metadata-action@v3
@@ -14,3 +28,6 @@ jobs:
             ghcr.io/rchrd/test
           tags: |
             type=raw,value=latest
+            type=raw,value=${{steps.get_version.outputs.version}}
+          labels: |
+            org.opencontainers.image.title={{IMAGE_NAME}}
