@@ -24,3 +24,6 @@ runs:
 
         docker image build --tag "${IMAGE_ID}:${VERSION}" ./${{ inputs.imageName }}
         echo "docker image push "${IMAGE_ID}:${VERSION}""
+
+        echo "docker image tag "${IMAGE_ID}:${VERSION}" "${IMAGE_ID}:latest""
+        echo "docker image push "${IMAGE_ID}:latest""
