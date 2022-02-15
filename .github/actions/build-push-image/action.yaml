@@ -1,0 +1,26 @@
+name: build-push-image
+
+description: Build Docker image and push to GitHub Container Registry
+
+inputs:
+  imageName:
+    description: "Basename of the image to build and push"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build and push image
+      shell: bash
+      run: |
+        IMAGE_ID="ghcr.io/${{ github.repository_owner }}/${INPUT_IMAGENAME}"
+
+        if [ -f ./${INPUT_IMAGENAME}/version ]
+        then
+          VERSION=$(cat ./${INPUT_IMAGENAME}/version)
+        else
+          VERSION=latest
+        fi
+
+        echo "docker image build --tag "${IMAGE_ID}:${VERSION}" ./${INPUT_IMAGENAME}"
+        echo "docker image push "${IMAGE_ID}:${VERSION}""
