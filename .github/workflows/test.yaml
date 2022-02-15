@@ -12,9 +12,9 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          if [ -f ./${{ inputs.imageName }}/version ]
+          if [ -f ./${IMAGE_NAME}/version ]
           then
-            VERSION=$(cat ./${{ inputs.imageName }}/version)
+            VERSION=$(cat ./${IMAGE_NAME}/version)
           else
             VERSION=latest
           fi
@@ -22,9 +22,9 @@ jobs:
           echo "::set-output name=version::${VERSION}"
 
       - run: |
-          echo "IMAGE_NAME=${IMAGE_NAME}"
+          echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
           echo "version: ${{steps.get_version.outputs.version}}"
-          echo "output: ${{steps.get_version.outputs.*}}"
+          echo "outputs: ${{steps.get_version.outputs.*}}"
 
       - name: Docker meta
         id: test_id
@@ -36,4 +36,4 @@ jobs:
             type=raw,value=latest
             type=raw,value=${{steps.get_version.outputs.version}}
           labels: |
-            org.opencontainers.image.title=${IMAGE_NAME}
+            org.opencontainers.image.title=${{ env.IMAGE_NAME }}
