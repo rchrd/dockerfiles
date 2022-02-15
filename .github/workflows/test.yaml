@@ -14,8 +14,6 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          ls -l
-          ls -l ./${{ env.IMAGE_NAME }}
           if [ -f ./${{ env.IMAGE_NAME }}/version ]
           then
             VERSION=$(cat ./${{ env.IMAGE_NAME }}/version)
@@ -25,19 +23,15 @@ jobs:
           echo "${VERSION}"
           echo "::set-output name=version::${VERSION}"
 
-      - run: |
-          echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
-          echo "version: ${{steps.get_version.outputs.version}}"
-          echo "outputs: ${{steps.get_version.outputs.*}}"
-
       - name: Docker meta
-        id: test_id
+        id: docker_meta
         uses: docker/metadata-action@v3
         with:
           images: |
-            ghcr.io/rchrd/test
+            ghcr.io/rchrd/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
-            type=raw,value=${{steps.get_version.outputs.version}}
+            type=raw,value=${{ steps.get_version.outputs.version }}
           labels: |
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
+            org.opencontainers.image.version=${{ steps.get_version.outputs.version }}
