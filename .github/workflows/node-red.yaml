@@ -1,12 +1,13 @@
 name: Build and publish node-red
 
-on:
-  push:
-    paths:
-      - "node-red/**"
-    branches:
-      - 'main'
-      - 'multi-arch'
+on: [push]
+# on:
+#   push:
+#     paths:
+#       - "node-red/**"
+#     branches:
+#       - 'main'
+#       - 'multi-arch'
 
 jobs:
   call-build-and-push-workflow:
