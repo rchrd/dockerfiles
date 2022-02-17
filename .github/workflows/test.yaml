@@ -58,7 +58,6 @@ jobs:
         with:
           context: ./${{ env.IMAGE_NAME }}
           platforms: linux/amd64,linux/arm64
-          push: false
-          # push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
