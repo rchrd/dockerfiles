@@ -6,19 +6,10 @@ on:
       - "node-red/**"
     branches:
       - 'main'
+      - 'multi-arch'
 
 jobs:
-  build-and-push:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ./.github/actions/ghcr-login
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: ./.github/actions/build-push-image
-        with:
-          imageName: node-red
+  call-build-and-push-workflow:
+    uses: ./.github/workflows/build-and-push.yaml
+    with:
+      imageName: node-red

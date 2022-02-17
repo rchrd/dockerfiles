@@ -1,9 +1,11 @@
-name: test
+name: build-and-push
 
-on: ["push"]
-
-env:
-  IMAGE_NAME: node-red
+on:
+  workflow_call:
+    inputs:
+      imageName:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -23,9 +25,9 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          if [ -f ./${{ env.IMAGE_NAME }}/version ]
+          if [ -f ./${{ inputs.imageName }}/version ]
           then
-            VERSION=$(cat ./${{ env.IMAGE_NAME }}/version)
+            VERSION=$(cat ./${{ inputs.imageName }}/version)
           else
             VERSION=latest
           fi
@@ -37,12 +39,12 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            ghcr.io/rchrd/${{ env.IMAGE_NAME }}
+            ghcr.io/rchrd/${{ inputs.imageName }}
           tags: |
             type=raw,value=latest
             type=raw,value=${{ steps.get_version.outputs.version }}
           labels: |
-            org.opencontainers.image.title=${{ env.IMAGE_NAME }}
+            org.opencontainers.image.title=${{ inputs.imageName }}
             org.opencontainers.image.version=${{ steps.get_version.outputs.version }}
 
       - name: Login to GHCR
@@ -56,7 +58,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./${{ env.IMAGE_NAME }}
+          context: ./${{ inputs.imageName }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
