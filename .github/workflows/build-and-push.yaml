@@ -1,7 +1,11 @@
 name: build-and-push
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      imageName:
+        required: true
+        type: string
   workflow_call:
     inputs:
       imageName:
