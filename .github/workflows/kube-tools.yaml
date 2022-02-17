@@ -8,17 +8,7 @@ on:
       - 'main'
 
 jobs:
-  build-and-push:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ./.github/actions/ghcr-login
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: ./.github/actions/build-push-image
-        with:
-          imageName: kube-tools
+  call-build-and-push-workflow:
+    uses: ./.github/workflows/build-and-push.yaml
+    with:
+      imageName: kube-tools

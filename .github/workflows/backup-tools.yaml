@@ -1,9 +1,9 @@
-name: Build and publish ansible
+name: Build and publish backup-tools
 
 on:
   push:
     paths:
-      - "ansible/**"
+      - "backup-tools/**"
     branches:
       - 'main'
 
@@ -11,4 +11,4 @@ jobs:
   call-build-and-push-workflow:
     uses: ./.github/workflows/build-and-push.yaml
     with:
-      imageName: ansible
+      imageName: backup-tools
