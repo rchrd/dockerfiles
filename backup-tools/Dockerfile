@@ -3,7 +3,7 @@ FROM debian:stable-slim
 # https://github.com/borgbackup/borg/releases
 ENV VERSION_BORG=1.2.1
 # https://github.com/rclone/rclone/releases
-ENV VERSION_RCLONE=1.58.1
+ENV VERSION_RCLONE=1.59.0
 
 RUN apt-get -y update \
     && apt-get -y install --no-install-recommends busybox-static ca-certificates \
