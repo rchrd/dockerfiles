@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.11-alpine
 
 RUN apk add --no-cache --virtual builddeps \
 			python3-dev \
@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual builddeps \
 			sshpass \
 			tzdata \
 		&& pip install --upgrade pip \
-		&& pip install --upgrade ansible==6.5.0 openshift==0.13.1 \
+		&& pip install --upgrade ansible==7.1.0 openshift==0.13.1 \
 		&& apk del builddeps
 
 COPY ansible.cfg /etc/ansible/ansible.cfg
