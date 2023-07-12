@@ -3,7 +3,7 @@ FROM nodered/node-red:3.0.2-18-minimal
 
 # https://flows.nodered.org/node/node-red-contrib-home-assistant-websocket
 RUN npm install -no-cache --no-fund \
-  node-red-contrib-home-assistant-websocket@0.51.1 \
+  node-red-contrib-home-assistant-websocket@0.53.0 \
   node-red-contrib-presence-faker \
   node-red-contrib-repeat \
   node-red-contrib-schedex \
