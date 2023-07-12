@@ -36,8 +36,8 @@ jobs:
           else
             VERSION=latest
           fi
-          echo "${VERSION}"
-          echo "::set-output name=version::${VERSION}"
+          echo "Building version: ${VERSION}"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: docker_meta
