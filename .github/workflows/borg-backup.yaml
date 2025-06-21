@@ -1,0 +1,14 @@
+name: Build and publish borg-backup
+
+on:
+  push:
+    paths:
+      - "borg-backup/**"
+    branches:
+      - "main"
+
+jobs:
+  call-build-and-push-workflow:
+    uses: ./.github/workflows/build-and-push.yaml
+    with:
+      imageName: borg-backup
