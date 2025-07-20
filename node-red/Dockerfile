@@ -9,3 +9,5 @@ RUN npm install -no-cache --no-fund \
     node-red-contrib-schedex \
     node-red-contrib-stoptimer2 \
     node-red-contrib-time-range-switch
+
+USER root
